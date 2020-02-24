@@ -9,6 +9,10 @@ public class ApplicationConfig : ScriptableObject
     private LevelParams[] _levels;
     public LevelParams[] Levels => _levels;
 
+    [SerializeField]
+    private int _levelStartCooldownInSeconds = 3;
+    public int LevelStartCooldownInSeconds => _levelStartCooldownInSeconds;
+
     // levels are looped
     public LevelParams GetNextLevel(LevelParams levelConfig)
     {

@@ -32,6 +32,11 @@ public class ApplicationManager : MonoBehaviour
         LoadMainMenu();
     }
 
+    private void Update()
+    {
+        _levelController?.OuterUpdate();
+    }
+
     private void LoadMainMenu()
     {
         if (_appState != ApplicationState.MainMenu && _appState != ApplicationState.Loading)
@@ -61,7 +66,7 @@ public class ApplicationManager : MonoBehaviour
 
     private void InitGame(LevelParams levelConfig)
     {
-        _levelController = new LevelController(levelConfig);
+        _levelController = new LevelController(levelConfig, _applicationConfig.LevelStartCooldownInSeconds);
         _levelController.OnRestartLevelClicked += LoadGame;
         _levelController.OnNextLevelClicked += LoadNextLevel;
         _levelController.OnQuitGameClicked += LoadMainMenu;

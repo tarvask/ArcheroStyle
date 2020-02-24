@@ -11,6 +11,10 @@ namespace Modules.Level
         public event Action OnMainMenuClicked;
 
         [SerializeField]
+        private HUD _hud;
+        public HUD HUD => _hud;
+
+        [SerializeField]
         private IWindow[] _levelWindows;
 
         [SerializeField]
