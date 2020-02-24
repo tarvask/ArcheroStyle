@@ -14,6 +14,9 @@ namespace Modules
         private ApplicationManager _applicationManager;
         private LevelParams _currentLevel;
 
+        // magic Unity value, which means that loading is completed
+        private const float MAGIC_LOAD_PROGRESS_COEFF = 0.9f;
+
         // async scene load stuff
         private AsyncOperation _asyncLevelSceneLoad;
 
@@ -95,7 +98,7 @@ namespace Modules
 
             while (!_asyncLevelSceneLoad.isDone)
             {
-                if (_asyncLevelSceneLoad.progress >= 0.9f)
+                if (_asyncLevelSceneLoad.progress >= MAGIC_LOAD_PROGRESS_COEFF)
                 {
                     yield break;
                 }
