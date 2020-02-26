@@ -5,7 +5,7 @@
         public void Execute(CharacterState characterState, CharacterParams characterConfig)
         {
             int currentWeaponIndex = System.Array.FindIndex(characterConfig.Weapons, (w) => characterState.Weapon);
-            WeaponConfig nextWeapon;
+            WeaponParams nextWeapon;
 
             if (currentWeaponIndex < characterConfig.Weapons.Length - 1)
             {

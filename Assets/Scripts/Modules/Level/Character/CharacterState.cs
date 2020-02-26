@@ -12,7 +12,7 @@
         public int HealthPoints { get; private set; }
         public float Speed { get; private set; }
         public float ShootingTimer { get; private set; }
-        public WeaponConfig Weapon { get; private set; }
+        public WeaponParams Weapon { get; private set; }
         public CharacterCondition Condition { get; private set; }
 
         public CharacterState(CharacterParams config)
@@ -45,7 +45,7 @@
             ShootingTimer = reloadingTime;
         }
 
-        public void ChangeWeapon(WeaponConfig newWeapon)
+        public void ChangeWeapon(WeaponParams newWeapon)
         {
             Weapon = newWeapon;
         }

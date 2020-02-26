@@ -3,7 +3,7 @@
 namespace Modules.Level.Character
 {
     [CreateAssetMenu]
-    public class WeaponConfig : ScriptableObject
+    public class WeaponParams : ScriptableObject
     {
         [SerializeField]
         private string _title;

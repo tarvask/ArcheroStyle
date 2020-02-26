@@ -6,6 +6,10 @@ namespace Modules.Level.Character
     public class CharacterParams : ScriptableObject
     {
         [SerializeField]
+        private string _title;
+        public string Title => _title;
+
+        [SerializeField]
         private CharacterView _characterViewPrefab;
         public CharacterView CharacterViewPrefab => _characterViewPrefab;
 
@@ -18,7 +22,7 @@ namespace Modules.Level.Character
         public int HealthPoints => _healthPoints;
 
         [SerializeField]
-        private WeaponConfig[] _weapons;
-        public WeaponConfig[] Weapons => _weapons;
+        private WeaponParams[] _weapons;
+        public WeaponParams[] Weapons => _weapons;
     }
 }
