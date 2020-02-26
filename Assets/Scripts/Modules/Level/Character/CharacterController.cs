@@ -24,6 +24,11 @@ namespace Modules.Level.Character
 
         public bool IsActive => (_state.Condition == CharacterCondition.Active);
 
+        public void Activate()
+        {
+            _state.Activate();
+        }
+
         public void AddCommand(ICommand command)
         {
             _commands.Enqueue(command);

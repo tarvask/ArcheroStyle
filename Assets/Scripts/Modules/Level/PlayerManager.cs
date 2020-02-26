@@ -15,6 +15,11 @@ namespace Modules.Level
             inputManager.OnChangeWeaponInput += ChangeCharacterWeapon;
         }
 
+        public void Activate()
+        {
+            _character.Activate();
+        }
+
         public void OuterUpdate(float deltaTime)
         {
             _character.Think(deltaTime);

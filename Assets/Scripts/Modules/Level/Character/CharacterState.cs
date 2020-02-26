@@ -37,7 +37,10 @@
 
         public void Tick(float deltaTime)
         {
-            ShootingTimer -= deltaTime;
+            if (ShootingTimer > 0)
+            {
+                ShootingTimer -= deltaTime;
+            }
         }
 
         public void ReloadWeapon(float reloadingTime)

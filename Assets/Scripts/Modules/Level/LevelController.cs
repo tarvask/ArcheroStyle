@@ -57,6 +57,7 @@ namespace Modules.Level
         private void StartLevel()
         {
             // activate player and enemy characters
+            _playerManager.Activate();
         }
     }
 }
