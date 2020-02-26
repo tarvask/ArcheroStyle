@@ -34,7 +34,7 @@ public class ApplicationManager : MonoBehaviour
 
     private void Update()
     {
-        _levelController?.OuterUpdate();
+        _levelController?.OuterUpdate(Time.deltaTime);
     }
 
     private void LoadMainMenu()
@@ -66,7 +66,7 @@ public class ApplicationManager : MonoBehaviour
 
     private void InitGame(LevelParams levelConfig)
     {
-        _levelController = new LevelController(levelConfig, _applicationConfig.LevelStartCooldownInSeconds);
+        _levelController = new LevelController(levelConfig, _applicationConfig);
         _levelController.OnRestartLevelClicked += LoadGame;
         _levelController.OnNextLevelClicked += LoadNextLevel;
         _levelController.OnQuitGameClicked += LoadMainMenu;

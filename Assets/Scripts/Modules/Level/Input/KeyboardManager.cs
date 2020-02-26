@@ -1,4 +1,6 @@
-﻿namespace Modules.Level.Input
+﻿using System;
+
+namespace Modules.Level.Input
 {
     // Input.GetAxisRaw() is used here
     // to avoid having movement when opposite buttons are pressed together

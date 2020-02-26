@@ -26,6 +26,11 @@ namespace Modules.Level
         [SerializeField]
         private Button _mainMenuButton;
 
+        [Space]
+        [SerializeField]
+        private Transform _arenaTransform;
+        public Transform ArenaTransform => _arenaTransform;
+
         private void Awake()
         {
             _restartLevelButton.onClick.AddListener(() => OnRestartLevelClicked?.Invoke());

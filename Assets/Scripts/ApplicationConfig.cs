@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Modules.Level;
+using Modules.Level.Character;
 
 // [CreateAssetMenu]
 // commented to avoid creating another instance of Application Config
@@ -12,6 +13,10 @@ public class ApplicationConfig : ScriptableObject
     [SerializeField]
     private int _levelStartCooldownInSeconds = 3;
     public int LevelStartCooldownInSeconds => _levelStartCooldownInSeconds;
+
+    [SerializeField]
+    private CharacterParams _playerConfig;
+    public CharacterParams PlayerConfig => _playerConfig;
 
     // levels are looped
     public LevelParams GetNextLevel(LevelParams levelConfig)

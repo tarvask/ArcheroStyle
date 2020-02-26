@@ -1,45 +1,58 @@
-﻿using UnityEngine;
+﻿using System;
 using Modules.Level.Input;
 
 namespace Modules.Level
 {
+    public enum MovementDirection
+    {
+        Idle = 0,
+
+        Up = 8,
+        RightUp = 12,
+        Right = 4,
+        RightDown = 6,
+        Down = 2,
+        LeftDown = 3,
+        Left = 1,
+        LeftUp = 9
+    }
+
     public class InputManager
     {
-        public enum MovementDirection
-        {
-            Idle = 0,
-
-            Up = 8,
-            RightUp = 12,
-            Right = 4,
-            RightDown = 6,
-            Down = 2,
-            LeftDown = 3,
-            Left = 1,
-            LeftUp = 9
-        }
+        // interface
+        public event Action<MovementDirection> OnMovementInput;
+        public event Action<int> OnChangeWeaponInput;
 
         // dependencies
-        private IMovementInput _hud;
+        private IMovementInput _hudMovementInput;
+        private IChangeWeaponInput _hudChangeWeaponInput;
 
         // own members
         private IMovementInput _keyboardManager;
 
-        public InputManager(IMovementInput hud)
+        public InputManager(HUD hud)
         {
             // resolve dependencies
-            _hud = hud;
+            _hudMovementInput = hud;
+            _hudChangeWeaponInput = hud;
 
             // prepare own members
             _keyboardManager = new KeyboardManager();
+
+            _hudChangeWeaponInput.OnChangeWeaponButtonClicked += (delta) => OnChangeWeaponInput?.Invoke(delta);
         }
 
         public void OuterUpdate()
         {
-            bool isUpButtonPressed = _hud.IsUpButtonPressed || _keyboardManager.IsUpButtonPressed;
-            bool isLeftButtonPressed = _hud.IsLeftButtonPressed || _keyboardManager.IsLeftButtonPressed;
-            bool isRightButtonPressed = _hud.IsRightButtonPressed || _keyboardManager.IsRightButtonPressed;
-            bool isDownButtonPressed = _hud.IsDownButtonPressed || _keyboardManager.IsDownButtonPressed;
+            CheckMovementInput();
+        }
+
+        private void CheckMovementInput()
+        {
+            bool isUpButtonPressed = _hudMovementInput.IsUpButtonPressed || _keyboardManager.IsUpButtonPressed;
+            bool isLeftButtonPressed = _hudMovementInput.IsLeftButtonPressed || _keyboardManager.IsLeftButtonPressed;
+            bool isRightButtonPressed = _hudMovementInput.IsRightButtonPressed || _keyboardManager.IsRightButtonPressed;
+            bool isDownButtonPressed = _hudMovementInput.IsDownButtonPressed || _keyboardManager.IsDownButtonPressed;
 
             // sanity check
             if (isUpButtonPressed && isDownButtonPressed)
@@ -63,54 +76,7 @@ namespace Modules.Level
 
             if (direction != MovementDirection.Idle)
             {
-                // create command
-                CreateMovementByDirection(direction);
-            }
-        }
-
-        private void CreateMovementByDirection(MovementDirection direction)
-        {
-            switch (direction)
-            {
-                case MovementDirection.Up:
-                    // create up movement command
-                    Debug.Log("Move Up");
-                    break;
-
-                case MovementDirection.RightUp:
-                    // create right-up movement command
-                    Debug.Log("Move Right Up");
-                    break;
-
-                case MovementDirection.Right:
-                    // create right movement command
-                    Debug.Log("Move Right");
-                    break;
-
-                case MovementDirection.RightDown:
-                    // create right-down movement command
-                    Debug.Log("Move Right Down");
-                    break;
-
-                case MovementDirection.Down:
-                    // create down movement command
-                    Debug.Log("Move Down");
-                    break;
-
-                case MovementDirection.LeftDown:
-                    // create left-down movement command
-                    Debug.Log("Move Left Down");
-                    break;
-
-                case MovementDirection.Left:
-                    // create left movement command
-                    Debug.Log("Move Left");
-                    break;
-
-                case MovementDirection.LeftUp:
-                    // create left-up movement command
-                    Debug.Log("Move Left Up");
-                    break;
+                OnMovementInput?.Invoke(direction);
             }
         }
     }

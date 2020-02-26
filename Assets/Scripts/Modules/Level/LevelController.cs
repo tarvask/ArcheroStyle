@@ -17,11 +17,10 @@ namespace Modules.Level
 
         // members
         private InputManager _inputManager;
-
-        private object _playerManager;
+        private PlayerManager _playerManager;
         private object _enemiesManager;
 
-        public LevelController(LevelParams levelConfig, int startCooldown)
+        public LevelController(LevelParams levelConfig, ApplicationConfig generalConfig)
         {
             // resolve dependencies
             _levelConfig = levelConfig;
@@ -34,14 +33,19 @@ namespace Modules.Level
 
             _inputManager = new InputManager(_levelView.HUD);
 
+
+            _playerManager = new PlayerManager(levelConfig, generalConfig.PlayerConfig, _inputManager, _levelView.ArenaTransform);
+
             // spawn player and enemy characters
 
-            _levelView.StartCoroutine(WaitAndStartLevel(startCooldown));
+            _levelView.StartCoroutine(WaitAndStartLevel(generalConfig.LevelStartCooldownInSeconds));
         }
 
-        public void OuterUpdate()
+        public void OuterUpdate(float deltaTime)
         {
             _inputManager.OuterUpdate();
+
+            _playerManager.OuterUpdate(deltaTime);
         }
 
         private IEnumerator WaitAndStartLevel(int waitTimeSeconds)
