@@ -2,6 +2,6 @@
 {
     public interface ICommand
     {
-        void Execute(CharacterState characterState, CharacterParams characterConfig);
+        void Execute(CharacterState characterState, CharacterParams characterConfig, CharacterView characterView, float deltaTime);
     }
 }

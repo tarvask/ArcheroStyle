@@ -51,42 +51,42 @@ namespace Modules.Level
             switch (direction)
             {
                 case MovementDirection.Up:
-                    // create up movement command
+                    command = new MoveUpCommand();
                     Debug.Log("Move Up");
                     break;
 
                 case MovementDirection.RightUp:
-                    // create right-up movement command
+                    command = new MoveRightUpCommand();
                     Debug.Log("Move Right Up");
                     break;
 
                 case MovementDirection.Right:
-                    // create right movement command
+                    command = new MoveRightCommand();
                     Debug.Log("Move Right");
                     break;
 
                 case MovementDirection.RightDown:
-                    // create right-down movement command
+                    command = new MoveRightDownCommand();
                     Debug.Log("Move Right Down");
                     break;
 
                 case MovementDirection.Down:
-                    // create down movement command
+                    command = new MoveDownCommand();
                     Debug.Log("Move Down");
                     break;
 
                 case MovementDirection.LeftDown:
-                    // create left-down movement command
+                    command = new MoveLeftDownCommand();
                     Debug.Log("Move Left Down");
                     break;
 
                 case MovementDirection.Left:
-                    // create left movement command
+                    command = new MoveLeftCommand();
                     Debug.Log("Move Left");
                     break;
 
                 case MovementDirection.LeftUp:
-                    // create left-up movement command
+                    command = new MoveLeftUpCommand();
                     Debug.Log("Move Left Up");
                     break;
             }

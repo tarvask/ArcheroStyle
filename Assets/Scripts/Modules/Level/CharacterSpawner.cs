@@ -9,7 +9,7 @@ namespace Modules.Level
         {
             CharacterView characterView = Object.Instantiate(characterParams.CharacterViewPrefab, arenaTransform);
             characterView.transform.localPosition = characterSpawnPoint;
-            Character.CharacterController characterController = new Character.CharacterController(characterParams);
+            Character.CharacterController characterController = new Character.CharacterController(characterParams, characterView);
 
             return characterController;
         }

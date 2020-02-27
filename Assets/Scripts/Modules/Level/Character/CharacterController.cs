@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Modules.Level.Character.Commands;
 
 namespace Modules.Level.Character
@@ -7,15 +8,18 @@ namespace Modules.Level.Character
     {
         // dependencies
         private CharacterParams _config;
+        private CharacterView _view;
 
         // own members
         private CharacterState _state;
         private Queue<ICommand> _commands;
+        private Transform _transform;
 
-        public CharacterController(CharacterParams config)
+        public CharacterController(CharacterParams config, CharacterView view)
         {
             // resolve dependencies
             _config = config;
+            _view = view;
 
             // init own members
             _state = new CharacterState(_config);
@@ -23,6 +27,7 @@ namespace Modules.Level.Character
         }
 
         public bool IsActive => (_state.Condition == CharacterCondition.Active);
+        public Vector3 ArenaPosition => _transform.localPosition;
 
         public void Activate()
         {
@@ -44,7 +49,7 @@ namespace Modules.Level.Character
             {
                 if (_commands != null)
                 {
-                    ExecuteCommands();
+                    ExecuteCommands(deltaTime);
                     // decrease shooting timer by deltaTime
                     _state.Tick(deltaTime);
                 }
@@ -61,11 +66,11 @@ namespace Modules.Level.Character
             // show dying animation and destroy
         }
 
-        private void ExecuteCommands()
+        private void ExecuteCommands(float deltaTime)
         {
             while (_commands.Count > 0)
             {
-                _commands.Dequeue().Execute(_state, _config);
+                _commands.Dequeue().Execute(_state, _config, _view, deltaTime);
             }
         }
 

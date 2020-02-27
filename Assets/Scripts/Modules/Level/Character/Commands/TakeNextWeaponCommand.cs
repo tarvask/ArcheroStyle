@@ -2,7 +2,10 @@
 {
     public class TakeNextWeaponCommand : ICommand
     {
-        public void Execute(CharacterState characterState, CharacterParams characterConfig)
+        public void Execute(CharacterState characterState,
+                            CharacterParams characterConfig,
+                            CharacterView characterView,
+                            float deltaTime)
         {
             int currentWeaponIndex = System.Array.FindIndex(characterConfig.Weapons, (w) => characterState.Weapon);
             WeaponParams nextWeapon;
