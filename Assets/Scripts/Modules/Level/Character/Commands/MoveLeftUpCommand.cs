@@ -4,6 +4,6 @@ namespace Modules.Level.Character.Commands
 {
     public class MoveLeftUpCommand : AbstractMoveCommand
     {
-        protected override Vector3 Direction => _upLeftDirection;
+        protected override DirectionRotationPair Direction => _upLeftDirection;
     }
 }

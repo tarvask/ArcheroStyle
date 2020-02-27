@@ -4,16 +4,17 @@ namespace Modules.Level.Character
 {
     public class CharacterView : MonoBehaviour
     {
-        private Transform _transform;
+        [SerializeField]
+        private Transform _movementTransform;
 
-        private void Awake()
-        {
-            _transform = transform;
-        }
+        [SerializeField]
+        private Transform _bodyTransform;
 
-        public void ChangePosition(Vector3 deltaPosition)
+        public void ChangePosition(Commands.AbstractMoveCommand.DirectionRotationPair direction, float speed)
         {
-            _transform.localPosition += deltaPosition;
+            Vector3 nextPosition = _movementTransform.localPosition + direction.Direction * speed;
+            _bodyTransform.localRotation = direction.Rotation;
+            _movementTransform.localPosition = nextPosition;
         }
     }
 }

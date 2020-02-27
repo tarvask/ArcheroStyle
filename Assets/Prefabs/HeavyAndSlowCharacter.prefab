@@ -233,3 +233,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff42a596ff534376830ddbae51b9d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementTransform: {fileID: 1013486256924685724}
+  _bodyTransform: {fileID: 6950535264035386271}
