@@ -62,11 +62,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1514693516479043284, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
+        type: 3}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769551101552829249, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
+        type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
     - target: {fileID: 3335413984482608788, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9eae479f0f3e04af39455c379443b831, type: 2}
+      objectReference: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4536239414958265020, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -75,12 +85,12 @@ PrefabInstance:
     - target: {fileID: 4722544339022438592, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}
       propertyPath: m_Name
-      value: LightAndFastCharacterVariant
+      value: LightAndFastCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 6326610953930591144, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}
       propertyPath: m_Radius
-      value: 0.6
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6950535264035386271, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}
@@ -91,6 +101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950535264035386271, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ad9209ed298462fa7f03cb8dc7cea0, type: 3}
