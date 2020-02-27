@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - {fileID: 11400000, guid: d1dad73afe40a42afbd5edd19ad20a2b, type: 2}
+  _levelStartCooldownInSeconds: 3
+  _playerConfig: {fileID: 11400000, guid: 1b4fa6c06738645509c922250eb62cf6, type: 2}
