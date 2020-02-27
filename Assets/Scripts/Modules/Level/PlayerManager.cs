@@ -52,42 +52,34 @@ namespace Modules.Level
             {
                 case MovementDirection.Up:
                     command = new MoveUpCommand();
-                    Debug.Log("Move Up");
                     break;
 
                 case MovementDirection.RightUp:
                     command = new MoveRightUpCommand();
-                    Debug.Log("Move Right Up");
                     break;
 
                 case MovementDirection.Right:
                     command = new MoveRightCommand();
-                    Debug.Log("Move Right");
                     break;
 
                 case MovementDirection.RightDown:
                     command = new MoveRightDownCommand();
-                    Debug.Log("Move Right Down");
                     break;
 
                 case MovementDirection.Down:
                     command = new MoveDownCommand();
-                    Debug.Log("Move Down");
                     break;
 
                 case MovementDirection.LeftDown:
                     command = new MoveLeftDownCommand();
-                    Debug.Log("Move Left Down");
                     break;
 
                 case MovementDirection.Left:
                     command = new MoveLeftCommand();
-                    Debug.Log("Move Left");
                     break;
 
                 case MovementDirection.LeftUp:
                     command = new MoveLeftUpCommand();
-                    Debug.Log("Move Left Up");
                     break;
             }
 
