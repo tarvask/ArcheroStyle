@@ -12,7 +12,7 @@ namespace Modules.Level
         // store as 2-dimensional,
         // return in suitable 3-dimensional form
         [SerializeField]
-        private Vector2 _playerSpawnPoint;
+        private Vector3 _playerSpawnPoint;
         public Vector3 PlayerSpawnPoint => _playerSpawnPoint;
     }
 }
