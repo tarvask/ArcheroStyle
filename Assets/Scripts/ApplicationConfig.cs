@@ -15,6 +15,10 @@ public class ApplicationConfig : ScriptableObject
     public int LevelStartCooldownInSeconds => _levelStartCooldownInSeconds;
 
     [SerializeField]
+    private float _obstaclesHeight = 3f;
+    public float ObstaclesHeight => _obstaclesHeight;
+
+    [SerializeField]
     private CharacterParams _playerConfig;
     public CharacterParams PlayerConfig => _playerConfig;
 

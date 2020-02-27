@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62effd3622c114187860d4a57e849add, type: 3}
+  m_Name: HeavyAndSlowEnemy
+  m_EditorClassIdentifier: 
+  _title: Mountain
+  _characterViewPrefab: {fileID: 7213039918004620572, guid: b669224403216429da7d9508f86c6029,
+    type: 3}
+  _speed: 2
+  _healthPoints: 150
+  _weapons:
+  - {fileID: 11400000, guid: 3d3956ed298b84e5c9137efc6fbe0982, type: 2}
+  _freezeTime: 4
+  _movementRange: 3

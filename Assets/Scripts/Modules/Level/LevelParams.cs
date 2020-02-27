@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Modules.Level.Character;
 
 namespace Modules.Level
 {
@@ -14,5 +15,17 @@ namespace Modules.Level
         [SerializeField]
         private Vector3 _playerSpawnPoint;
         public Vector3 PlayerSpawnPoint => _playerSpawnPoint;
+
+        [SerializeField]
+        private Vector2Int _arenaSize;
+        public Vector2Int ArenaSize => _arenaSize;
+
+        [SerializeField]
+        private int _enemiesSpawnBound;
+        public int EnemiesSpawnBound => _enemiesSpawnBound;
+
+        [SerializeField]
+        private EnemyParams[] _enemies;
+        public EnemyParams[] Enemies => _enemies;
     }
 }
