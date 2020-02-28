@@ -70,7 +70,12 @@ PrefabInstance:
     - target: {fileID: 4722544339022438592, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}
       propertyPath: m_Name
-      value: EnemyCharacter
+      value: LandEnemyCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722544339022438592, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4873135113757136459, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
         type: 3}

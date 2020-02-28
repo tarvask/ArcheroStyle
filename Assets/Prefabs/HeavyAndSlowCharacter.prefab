@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 1385574984163086192}
   m_Layer: 0
   m_Name: HeavyAndSlowCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
