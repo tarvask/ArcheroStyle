@@ -7,7 +7,7 @@
                             CharacterView characterView,
                             float deltaTime)
         {
-            int currentWeaponIndex = System.Array.FindIndex(characterConfig.Weapons, (w) => characterState.Weapon);
+            int currentWeaponIndex = System.Array.FindIndex(characterConfig.Weapons, (w) => (w == characterState.Weapon));
             WeaponParams nextWeapon;
 
             if (currentWeaponIndex < characterConfig.Weapons.Length - 1)
