@@ -10,6 +10,7 @@ namespace Modules.Level
         // interface
         public event Action OnAimingStarted;
         public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
+        public event Action OnPlayerKilled;
 
         // own members
         private Character.CharacterController _player;
@@ -20,6 +21,7 @@ namespace Modules.Level
             _player = CharacterSpawner.Spawn(playerConfig, arenaTransform, levelConfig.PlayerSpawnPoint);
             _player.OnAimingStarted += () => OnAimingStarted?.Invoke();
             _player.OnShotTriggered += (weapon, originTransform, targetTransform) => OnShotTriggered?.Invoke(weapon, originTransform, targetTransform);
+            _player.OnKilled += () => OnPlayerKilled?.Invoke();
 
             inputManager.OnMovementInput += MovePlayerCharacter;
             inputManager.OnChangeWeaponInput += ChangeCharacterWeapon;
@@ -28,6 +30,11 @@ namespace Modules.Level
         public void Activate()
         {
             _player.Activate();
+        }
+
+        public void Pause()
+        {
+            _player.Pause();
         }
 
         public void OuterUpdate(float deltaTime)

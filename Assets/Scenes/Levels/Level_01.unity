@@ -1298,8 +1298,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1120578797}
   - component: {fileID: 1120578798}
+  - component: {fileID: 1120578799}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Escape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1331,7 +1332,19 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 3, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!114 &1120578799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120578796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17f1282b13724e96a0448cb25f85445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1150020783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2531,7 @@ MonoBehaviour:
   _nextLevelButton: {fileID: 6326718962534381510}
   _mainMenuButton: {fileID: 1785548068603907247}
   _arenaTransform: {fileID: 159133184}
+  _escapeZone: {fileID: 1120578799}
 --- !u!4 &1753492092
 Transform:
   m_ObjectHideFlags: 0

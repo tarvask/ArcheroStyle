@@ -10,6 +10,7 @@ namespace Modules.Level
     {
         // interface
         public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
+        public event Action OnEnemyKilled;
 
         // dependencies
         private Character.CharacterController _player;
@@ -26,6 +27,7 @@ namespace Modules.Level
             {
                 enemy.OnAimingStarted += () => TrySetTarget(enemy);
                 enemy.OnShotTriggered += (weapon, originTransform, targetTransform) => OnShotTriggered?.Invoke(weapon, originTransform, targetTransform);
+                enemy.OnKilled += () => OnEnemyKilled?.Invoke();
             }
         }
 
@@ -53,11 +55,23 @@ namespace Modules.Level
             }
         }
 
+        public void Pause()
+        {
+            foreach (Character.CharacterController enemy in _enemies)
+            {
+                enemy.Pause();
+            }
+        }
+
         private void TrySetTarget(Character.CharacterController enemy)
         {
             if (_player.IsAlive)
             {
                 enemy.SetTarget(_player);
+            }
+            else
+            {
+                enemy.SetTarget(null);
             }
         }
     }

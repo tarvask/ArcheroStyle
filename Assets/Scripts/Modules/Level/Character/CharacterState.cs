@@ -58,6 +58,11 @@
             Condition = CharacterCondition.Active;
         }
 
+        public void Pause()
+        {
+            Condition = CharacterCondition.Wait;
+        }
+
         public void Die()
         {
             Condition = CharacterCondition.Dead;

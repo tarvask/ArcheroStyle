@@ -4,11 +4,13 @@ namespace Modules.Level
 {
     public class TargetsManager
     {
+        // dependencies
         private Character.CharacterController _player;
         private List<Character.CharacterController> _enemies;
 
         public TargetsManager(PlayerManager playerManager, EnemiesManager enemiesManager)
         {
+            // resolve dependencies
             _player = playerManager.Player;
             _enemies = enemiesManager.Enemies;
 
@@ -28,12 +30,15 @@ namespace Modules.Level
 
             foreach (Character.CharacterController enemy in _enemies)
             {
-                float sqrDistance = (enemy.ArenaPosition - _player.ArenaPosition).sqrMagnitude;
-
-                if (sqrDistance < minSqrDistance || minSqrDistance < 0)
+                if (enemy.IsAlive)
                 {
-                    minSqrDistance = sqrDistance;
-                    closestEnemy = enemy;
+                    float sqrDistance = (enemy.ArenaPosition - _player.ArenaPosition).sqrMagnitude;
+
+                    if (sqrDistance < minSqrDistance || minSqrDistance < 0)
+                    {
+                        minSqrDistance = sqrDistance;
+                        closestEnemy = enemy;
+                    }
                 }
             }
 

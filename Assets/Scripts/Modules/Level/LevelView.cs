@@ -31,6 +31,10 @@ namespace Modules.Level
         private Transform _arenaTransform;
         public Transform ArenaTransform => _arenaTransform;
 
+        [SerializeField]
+        private EscapeZoneView _escapeZone;
+        public EscapeZoneView EscapeZone => _escapeZone;
+
         private void Awake()
         {
             _restartLevelButton.onClick.AddListener(() => OnRestartLevelClicked?.Invoke());

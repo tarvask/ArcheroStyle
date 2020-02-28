@@ -21,6 +21,7 @@ namespace Modules.Level
         private EnemiesManager _enemiesManager;
         private TargetsManager _targetsManager;
         private BulletsManager _bulletsManager;
+        private GameRulesManager _gameRulesManager;
 
         public LevelController(LevelParams levelConfig, ApplicationConfig generalConfig)
         {
@@ -41,6 +42,10 @@ namespace Modules.Level
 
             _targetsManager = new TargetsManager(_playerManager, _enemiesManager);
             _bulletsManager = new BulletsManager(_playerManager, _enemiesManager, generalConfig.BulletPrefab, _levelView.ArenaTransform, generalConfig.BulletsMaxCount);
+            _gameRulesManager = new GameRulesManager(_playerManager, _enemiesManager, _levelView.EscapeZone);
+
+            _gameRulesManager.OnVictory += Win;
+            _gameRulesManager.OnDefeat += Lose;
 
             _levelView.StartCoroutine(WaitAndStartLevel(generalConfig.LevelStartCooldownInSeconds));
         }
@@ -64,6 +69,20 @@ namespace Modules.Level
             // activate player and enemy characters
             _playerManager.Activate();
             _enemiesManager.Activate();
+        }
+
+        private void Win()
+        {
+            _playerManager.Pause();
+            _enemiesManager.Pause();
+            Debug.Log("Congratulations, you win!");
+        }
+
+        private void Lose()
+        {
+            _playerManager.Pause();
+            _enemiesManager.Pause();
+            Debug.Log("Sorry, you lose!");
         }
     }
 }
