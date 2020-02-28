@@ -63,6 +63,7 @@ namespace Modules.Level
         {
             // activate player and enemy characters
             _playerManager.Activate();
+            _enemiesManager.Activate();
         }
     }
 }

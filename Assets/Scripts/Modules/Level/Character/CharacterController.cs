@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Modules.Level.Character.Commands;
+using Modules.Level.Bullet;
 
 namespace Modules.Level.Character
 {
@@ -30,6 +31,8 @@ namespace Modules.Level.Character
             _state = new CharacterState(_config);
             _commands = new Queue<ICommand>();
             _shootingTarget = null;
+
+            _view.OnSmashed += Hurt;
         }
 
         public bool IsActive => _state.Condition == CharacterCondition.Active;
@@ -78,6 +81,7 @@ namespace Modules.Level.Character
         {
             _state.Die();
             // show dying animation and destroy
+            _view.gameObject.SetActive(false);
         }
 
         private void ExecuteCommands(float deltaTime)
@@ -131,6 +135,11 @@ namespace Modules.Level.Character
             }
 
             return hasTarget;
+        }
+
+        private void Hurt(BulletState bulletConfig)
+        {
+            _state.Hurt(bulletConfig.Damage);
         }
     }
 }

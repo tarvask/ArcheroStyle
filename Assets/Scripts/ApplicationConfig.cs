@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Modules.Level;
 using Modules.Level.Character;
+using Modules.Level.Bullet;
 
 // [CreateAssetMenu]
 // commented to avoid creating another instance of Application Config
@@ -23,8 +24,8 @@ public class ApplicationConfig : ScriptableObject
     public CharacterParams PlayerConfig => _playerConfig;
 
     [SerializeField]
-    private GameObject _bulletPrefab;
-    public GameObject BulletPrefab => _bulletPrefab;
+    private BulletView _bulletPrefab;
+    public BulletView BulletPrefab => _bulletPrefab;
 
     [SerializeField]
     private int _bulletsMaxCount;

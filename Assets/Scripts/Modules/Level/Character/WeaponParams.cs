@@ -14,8 +14,8 @@ namespace Modules.Level.Character
         public float ReloadingTimeSeconds => _reloadingTimeSeconds;
 
         [SerializeField]
-        private float _damage;
-        public float Damage => _damage;
+        private int _damage;
+        public int Damage => _damage;
 
         [SerializeField]
         private float _range;

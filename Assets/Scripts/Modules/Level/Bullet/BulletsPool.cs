@@ -9,7 +9,7 @@ namespace Modules.Level.Bullet
         private BulletController[] _pool;
         public BulletController[] Pool => _pool;
 
-        public BulletsPool(GameObject bulletPrefab, Transform arenaTransform, int maxBulletsCount)
+        public BulletsPool(BulletView bulletPrefab, Transform arenaTransform, int maxBulletsCount)
         {
             _poolTransform = new GameObject("BulletsPool").transform;
             _poolTransform.SetParent(arenaTransform);
@@ -20,9 +20,9 @@ namespace Modules.Level.Bullet
 
             for (int i = 0; i < maxBulletsCount; i++)
             {
-                GameObject bulletGO = Object.Instantiate(bulletPrefab, _poolTransform);
-                bulletGO.SetActive(false);
-                _pool[i] = new BulletController(bulletGO);
+                BulletView bulletView = Object.Instantiate(bulletPrefab, _poolTransform);
+                bulletView.gameObject.SetActive(false);
+                _pool[i] = new BulletController(bulletView);
             }
         }
 

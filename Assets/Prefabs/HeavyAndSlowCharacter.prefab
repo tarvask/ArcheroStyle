@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4873135113757136459}
   - component: {fileID: 1940400373558214372}
   - component: {fileID: 3335413984482608788}
-  - component: {fileID: 5310543223356273696}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!54 &5310543223356273696
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514693516479043284}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1769551101552829249
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +167,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769551101552829249}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.8
   m_Height: 1
@@ -216,6 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1013486256924685724}
   - component: {fileID: 572674223556136178}
+  - component: {fileID: 1385574984163086192}
   m_Layer: 0
   m_Name: HeavyAndSlowCharacter
   m_TagString: Untagged
@@ -253,3 +237,25 @@ MonoBehaviour:
   _movementTransform: {fileID: 1013486256924685724}
   _bodyTransform: {fileID: 6950535264035386271}
   _gunTransform: {fileID: 4873135113757136459}
+--- !u!195 &1385574984163086192
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722544339022438592}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.65
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

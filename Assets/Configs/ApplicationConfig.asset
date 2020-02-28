@@ -17,6 +17,6 @@ MonoBehaviour:
   _levelStartCooldownInSeconds: 3
   _obstaclesHeight: 3
   _playerConfig: {fileID: 11400000, guid: b3996fd0014c04786a0eaaa84bb74961, type: 2}
-  _bulletPrefab: {fileID: 7822570989549562780, guid: 3a3c999ab686346f9a561345ad54805a,
+  _bulletPrefab: {fileID: 44128329637146116, guid: 3a3c999ab686346f9a561345ad54805a,
     type: 3}
   _bulletsMaxCount: 100

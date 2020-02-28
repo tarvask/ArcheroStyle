@@ -7,18 +7,24 @@ namespace Modules.Level
     public class BulletsManager
     {
         private BulletsPool _bulletsPool;
-        private float _bulletSpeed;
 
         public BulletsManager(PlayerManager playerManager,
                               EnemiesManager enemiesManager,
-                              GameObject bulletPrefab,
+                              BulletView bulletPrefab,
                               Transform arenaTransform,
                               int maxBulletsCount)
         {
             playerManager.OnShotTriggered += ShowShot;
             enemiesManager.OnShotTriggered += ShowShot;
 
+            // create pool
             _bulletsPool = new BulletsPool(bulletPrefab, arenaTransform, maxBulletsCount);
+
+            // make subscriptions
+            foreach (BulletController bullet in _bulletsPool.Pool)
+            {
+                bullet.OnSmashed += OnBulletSmashed;
+            }
         }
 
         public void OuterUpdate(float deltaTime)
@@ -33,6 +39,7 @@ namespace Modules.Level
                     }
                     else
                     {
+                        // drop bullet which flew too far
                         _bulletsPool.Release(bullet);
                     }
                 }
@@ -46,9 +53,23 @@ namespace Modules.Level
             if (bullet != null)
             {
                 Vector3 direction = (target.position - origin.position).normalized;
-                bullet.State.Init(weapon.Damage, weapon.Range, weapon.Speed, origin.position, direction);
+                Collider shooterCollider = origin.GetComponentInParent<Collider>();
+                bullet.State.Init(weapon.Damage, weapon.Range, weapon.Speed, origin.position, direction, shooterCollider);
                 bullet.Transform.position = origin.position;
             }
+        }
+        private void OnBulletSmashed(Transform otherTransform, BulletController bullet)
+        {
+            CharacterView character = otherTransform.parent.GetComponent<CharacterView>();
+
+            if (character != null)
+            {
+                // hurt
+                character.Smash(bullet.State);
+            }
+
+            // drop bullet that smashed
+            _bulletsPool.Release(bullet);
         }
     }
 }

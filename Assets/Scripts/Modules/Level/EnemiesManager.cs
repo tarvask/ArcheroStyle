@@ -22,9 +22,9 @@ namespace Modules.Level
         {
             _enemies = EnemiesSpawner.Spawn(levelConfig.Enemies, arenaTransform, levelConfig.ArenaSize, levelConfig.EnemiesSpawnBound, obstaclesHeight);
 
-            foreach (var enemy in _enemies)
+            foreach (Character.CharacterController enemy in _enemies)
             {
-                enemy.OnAimingStarted += () => enemy.SetTarget(_player);
+                enemy.OnAimingStarted += () => TrySetTarget(enemy);
                 enemy.OnShotTriggered += (weapon, originTransform, targetTransform) => OnShotTriggered?.Invoke(weapon, originTransform, targetTransform);
             }
         }
@@ -36,7 +36,29 @@ namespace Modules.Level
 
         public void OuterUpdate(float deltaTime)
         {
+            foreach (Character.CharacterController enemy in _enemies)
+            {
+                if (enemy.IsActive)
+                {
+                    enemy.Think(deltaTime);
+                }
+            }
+        }
 
+        public void Activate()
+        {
+            foreach (Character.CharacterController enemy in _enemies)
+            {
+                enemy.Activate();
+            }
+        }
+
+        private void TrySetTarget(Character.CharacterController enemy)
+        {
+            if (_player.IsAlive)
+            {
+                enemy.SetTarget(_player);
+            }
         }
     }
 }
