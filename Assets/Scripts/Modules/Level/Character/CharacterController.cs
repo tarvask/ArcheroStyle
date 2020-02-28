@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Modules.Level.Character.Commands;
 
@@ -6,6 +7,9 @@ namespace Modules.Level.Character
 {
     public class CharacterController
     {
+        // interface
+        public event Action OnAimingStarted;
+
         // dependencies
         private CharacterParams _config;
         private CharacterView _view;
@@ -13,7 +17,7 @@ namespace Modules.Level.Character
         // own members
         private CharacterState _state;
         private Queue<ICommand> _commands;
-        private Transform _transform;
+        private CharacterController _shootingTarget;
 
         public CharacterController(CharacterParams config, CharacterView view)
         {
@@ -24,10 +28,12 @@ namespace Modules.Level.Character
             // init own members
             _state = new CharacterState(_config);
             _commands = new Queue<ICommand>();
+            _shootingTarget = null;
         }
 
-        public bool IsActive => (_state.Condition == CharacterCondition.Active);
-        public Vector3 ArenaPosition => _transform.localPosition;
+        public bool IsActive => _state.Condition == CharacterCondition.Active;
+        public bool IsAlive => _state.Condition != CharacterCondition.Dead;
+        public Vector3 ArenaPosition => _view.MovementTransform.localPosition;
 
         public void Activate()
         {
@@ -52,12 +58,19 @@ namespace Modules.Level.Character
                     ExecuteCommands(deltaTime);
                     // decrease shooting timer by deltaTime
                     _state.Tick(deltaTime);
+                    // stop following target
+                    _shootingTarget = null;
                 }
                 else
                 {
                     Shoot(deltaTime);
                 }
             }
+        }
+
+        public void SetTarget(CharacterController target)
+        {
+            _shootingTarget = target;
         }
 
         private void Die()
@@ -76,18 +89,46 @@ namespace Modules.Level.Character
 
         private void Shoot(float deltaTime)
         {
-            if (_state.ShootingTimer <= 0)
+            // all enemies can be dead
+            if (Aim())
             {
-                // shoot a bullet
+                if (_state.ShootingTimer <= 0)
+                {
+                    // shoot a bullet
 
-                // set shoot timer to max
-                _state.ReloadWeapon(_state.Weapon.ReloadingTimeSeconds);
+                    // set shoot timer to max
+                    _state.ReloadWeapon(_state.Weapon.ReloadingTimeSeconds);
+                }
+                else
+                {
+                    // decrease shooting timer by deltaTime
+                    _state.Tick(deltaTime);
+                }
             }
             else
             {
                 // decrease shooting timer by deltaTime
                 _state.Tick(deltaTime);
             }
+        }
+
+        private bool Aim()
+        {
+            if (_shootingTarget == null || !_shootingTarget.IsAlive)
+            {
+                // target will be found and passed after this call
+                OnAimingStarted?.Invoke();
+            }
+
+            bool hasTarget = _shootingTarget != null;
+
+            if (hasTarget)
+            {
+                // rotate to target
+                _view.BodyTransform.LookAt(_shootingTarget._view.BodyTransform);
+            }
+
+            return hasTarget;
         }
     }
 }

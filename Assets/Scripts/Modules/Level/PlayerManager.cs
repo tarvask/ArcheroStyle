@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Modules.Level.Character;
 using Modules.Level.Character.Commands;
 
@@ -6,40 +7,45 @@ namespace Modules.Level
 {
     public class PlayerManager
     {
-        private Character.CharacterController _character;
+        // interface
+        public event Action OnAimingStarted;
+
+        // own members
+        private Character.CharacterController _player;
+        public Character.CharacterController Player => _player;
 
         public PlayerManager(LevelParams levelConfig, CharacterParams playerConfig, InputManager inputManager, Transform arenaTransform)
         {
-            _character = CharacterSpawner.Spawn(playerConfig, arenaTransform, levelConfig.PlayerSpawnPoint);
+            _player = CharacterSpawner.Spawn(playerConfig, arenaTransform, levelConfig.PlayerSpawnPoint);
             inputManager.OnMovementInput += MovePlayerCharacter;
             inputManager.OnChangeWeaponInput += ChangeCharacterWeapon;
         }
 
         public void Activate()
         {
-            _character.Activate();
+            _player.Activate();
         }
 
         public void OuterUpdate(float deltaTime)
         {
-            _character.Think(deltaTime);
+            _player.Think(deltaTime);
         }
 
         private void MovePlayerCharacter(MovementDirection direction)
         {
-            if (_character.IsActive)
+            if (_player.IsActive)
             {
                 ICommand command = CreateMoveCommand(direction);
-                _character.AddCommand(command);
+                _player.AddCommand(command);
             }
         }
 
         private void ChangeCharacterWeapon(int delta)
         {
-            if (_character.IsActive)
+            if (_player.IsActive)
             {
                 ICommand command = CreateChangeWeaponCommand(delta);
-                _character.AddCommand(command);
+                _player.AddCommand(command);
             }
         }
 

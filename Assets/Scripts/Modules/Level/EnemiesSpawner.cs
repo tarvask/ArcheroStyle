@@ -6,13 +6,13 @@ namespace Modules.Level
 {
     public static class EnemiesSpawner
     {
-        public static List<CharacterView> Spawn(EnemyParams[] enemiesParams,
+        public static List<Character.CharacterController> Spawn(EnemyParams[] enemiesParams,
                                                 Transform arenaTransform,
                                                 Vector2Int arenaSize,
                                                 int bottomSpawnBound,
                                                 float obstaclesHeight)
         {
-            List<CharacterView> result = new List<CharacterView>();
+            List<Character.CharacterController> result = new List<Character.CharacterController>();
             List<Vector3> possibleSpawnPoints = GetPossibleSpawnPoints(arenaSize, bottomSpawnBound);
 
             foreach (EnemyParams singleEnemyParams in enemiesParams)
@@ -24,8 +24,8 @@ namespace Modules.Level
                 possibleSpawnPoints.RemoveAt(randomSpawnPointNumber);
 
                 // spawn single enemy
-                CharacterView enemyView = SpawnSingleEnemy(singleEnemyParams, arenaTransform, spawnPoint, obstaclesHeight);
-                result.Add(enemyView);
+                Character.CharacterController enemy = SpawnSingleEnemy(singleEnemyParams, arenaTransform, spawnPoint, obstaclesHeight);
+                result.Add(enemy);
             }
 
             return result;
@@ -50,7 +50,7 @@ namespace Modules.Level
             return possibleSpawnPoints;
         }
 
-        private static CharacterView SpawnSingleEnemy(EnemyParams enemyParams,
+        private static Character.CharacterController SpawnSingleEnemy(EnemyParams enemyParams,
                                                       Transform arenaTransform,
                                                       Vector3 spawnPoint,
                                                       float obstaclesHeight)
@@ -64,8 +64,9 @@ namespace Modules.Level
 
             enemyView.transform.localPosition = spawnPoint;
             enemyView.transform.localRotation = Quaternion.Euler(0, -180, 0);
+            Character.CharacterController enemyController = new Character.CharacterController(enemyParams, enemyView);
 
-            return enemyView;
+            return enemyController;
         }
     }
 }

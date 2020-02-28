@@ -6,9 +6,11 @@ namespace Modules.Level.Character
     {
         [SerializeField]
         private Transform _movementTransform;
+        public Transform MovementTransform => _movementTransform;
 
         [SerializeField]
         private Transform _bodyTransform;
+        public Transform BodyTransform => _bodyTransform;
 
         public void ChangePosition(Commands.AbstractMoveCommand.DirectionRotationPair direction, float speed)
         {
