@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Modules.Level
+namespace Modules.Level.UI
 {
     public class HUD : MonoBehaviour, Input.IMovementInput, Input.IChangeWeaponInput
     {

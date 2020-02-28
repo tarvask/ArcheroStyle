@@ -30,9 +30,6 @@ namespace Modules.Level
             _levelView = UnityEngine.Object.FindObjectOfType<LevelView>();
 
             _levelView.HUD.Init();
-            _levelView.OnRestartLevelClicked += () => OnRestartLevelClicked?.Invoke(_levelConfig);
-            _levelView.OnNextLevelClicked += () => OnNextLevelClicked?.Invoke(_levelConfig);
-            _levelView.OnMainMenuClicked += () => OnQuitGameClicked?.Invoke();
 
             _inputManager = new InputManager(_levelView.HUD);
 
@@ -75,14 +72,23 @@ namespace Modules.Level
         {
             _playerManager.Pause();
             _enemiesManager.Pause();
-            Debug.Log("Congratulations, you win!");
+            ShowEndLevelWindow("Congratulations, you win!");
         }
 
         private void Lose()
         {
             _playerManager.Pause();
             _enemiesManager.Pause();
-            Debug.Log("Sorry, you lose!");
+            ShowEndLevelWindow("Sorry, you lose!");
+        }
+
+        private void ShowEndLevelWindow(string caption)
+        {
+            UI.EndLevelWindow endLevelWindow = _levelView.GetWindow<UI.EndLevelWindow>();
+            endLevelWindow.Init(caption,
+                                () => OnRestartLevelClicked?.Invoke(_levelConfig),
+                                () => OnNextLevelClicked?.Invoke(_levelConfig),
+                                () => OnQuitGameClicked?.Invoke());
         }
     }
 }
