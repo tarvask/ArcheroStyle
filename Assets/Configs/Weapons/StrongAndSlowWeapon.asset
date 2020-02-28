@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StrongAndSlowWeapon
   m_EditorClassIdentifier: 
   _title: AWP
-  _reloadingTimeSeconds: 5
+  _reloadingTimeSeconds: 4
   _damage: 100
   _range: 10
-  _speed: 12
+  _speed: 25

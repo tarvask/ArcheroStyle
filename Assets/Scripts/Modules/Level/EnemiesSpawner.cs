@@ -59,7 +59,7 @@ namespace Modules.Level
 
             if (enemyParams.IsFlying)
             {
-                spawnPoint += new Vector3(0, obstaclesHeight, 0);
+                //spawnPoint += new Vector3(0, obstaclesHeight, 0);
             }
 
             enemyView.transform.localPosition = spawnPoint;

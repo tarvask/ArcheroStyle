@@ -54,7 +54,7 @@ namespace Modules.Level
 
         private void OnEscapeZoneEntered(Collider other)
         {
-            CharacterController character = other.transform.parent.GetComponent<CharacterController>();
+            Character.CharacterView character = other.transform.parent.GetComponent<Character.CharacterView>();
 
             if (character != null && character.tag == "Player")
             {
@@ -65,7 +65,7 @@ namespace Modules.Level
 
         private void OnEscapeZoneLeft(Collider other)
         {
-            CharacterController character = other.transform.parent.GetComponent<CharacterController>();
+            Character.CharacterView character = other.transform.parent.GetComponent<Character.CharacterView>();
 
             if (character != null && character.tag == "Player")
             {

@@ -15,7 +15,7 @@ MonoBehaviour:
   _title: Tank
   _characterViewPrefab: {fileID: 572674223556136178, guid: e6ad9209ed298462fa7f03cb8dc7cea0,
     type: 3}
-  _speed: 2
+  _speed: 4
   _healthPoints: 300
   _weapons:
   - {fileID: 11400000, guid: 3d3956ed298b84e5c9137efc6fbe0982, type: 2}

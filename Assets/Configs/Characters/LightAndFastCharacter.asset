@@ -15,7 +15,7 @@ MonoBehaviour:
   _title: Flash
   _characterViewPrefab: {fileID: 6479884630838203436, guid: 173f5f0e00e444f3886a3fd266bc84d1,
     type: 3}
-  _speed: 7
+  _speed: 10
   _healthPoints: 100
   _weapons:
   - {fileID: 11400000, guid: 3d3956ed298b84e5c9137efc6fbe0982, type: 2}
