@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WeakAndFastWeapon
   m_EditorClassIdentifier: 
   _title: Uzi
-  _reloadingTimeSeconds: 0.05
+  _reloadingTimeSeconds: 0.2
   _damage: 2
-  _range: 2
+  _range: 4
+  _speed: 5
