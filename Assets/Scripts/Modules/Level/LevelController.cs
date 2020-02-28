@@ -20,6 +20,7 @@ namespace Modules.Level
         private PlayerManager _playerManager;
         private EnemiesManager _enemiesManager;
         private TargetsManager _targetsManager;
+        private BulletsManager _bulletsManager;
 
         public LevelController(LevelParams levelConfig, ApplicationConfig generalConfig)
         {
@@ -39,6 +40,7 @@ namespace Modules.Level
             _enemiesManager = new EnemiesManager(levelConfig, _levelView.ArenaTransform, generalConfig.ObstaclesHeight);
 
             _targetsManager = new TargetsManager(_playerManager, _enemiesManager);
+            _bulletsManager = new BulletsManager(_playerManager, _enemiesManager, generalConfig.BulletPrefab, _levelView.ArenaTransform, generalConfig.BulletsMaxCount);
 
             _levelView.StartCoroutine(WaitAndStartLevel(generalConfig.LevelStartCooldownInSeconds));
         }
@@ -48,6 +50,7 @@ namespace Modules.Level
             _inputManager.OuterUpdate();
             _enemiesManager.OuterUpdate(deltaTime);
             _playerManager.OuterUpdate(deltaTime);
+            _bulletsManager.OuterUpdate(deltaTime);
         }
 
         private IEnumerator WaitAndStartLevel(int waitTimeSeconds)

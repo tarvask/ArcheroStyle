@@ -9,6 +9,7 @@ namespace Modules.Level.Character
     {
         // interface
         public event Action OnAimingStarted;
+        public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
 
         // dependencies
         private CharacterParams _config;
@@ -53,7 +54,7 @@ namespace Modules.Level.Character
             }
             else
             {
-                if (_commands != null)
+                if (_commands.Count > 0)
                 {
                     ExecuteCommands(deltaTime);
                     // decrease shooting timer by deltaTime
@@ -95,6 +96,7 @@ namespace Modules.Level.Character
                 if (_state.ShootingTimer <= 0)
                 {
                     // shoot a bullet
+                    OnShotTriggered?.Invoke(_state.Weapon, _view.GunTransform, _shootingTarget._view.BodyTransform);
 
                     // set shoot timer to max
                     _state.ReloadWeapon(_state.Weapon.ReloadingTimeSeconds);

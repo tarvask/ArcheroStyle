@@ -20,5 +20,9 @@ namespace Modules.Level.Character
         [SerializeField]
         private float _range;
         public float Range => _range;
+
+        [SerializeField]
+        private float _speed;
+        public float Speed => _speed;
     }
 }

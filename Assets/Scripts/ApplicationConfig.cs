@@ -22,6 +22,14 @@ public class ApplicationConfig : ScriptableObject
     private CharacterParams _playerConfig;
     public CharacterParams PlayerConfig => _playerConfig;
 
+    [SerializeField]
+    private GameObject _bulletPrefab;
+    public GameObject BulletPrefab => _bulletPrefab;
+
+    [SerializeField]
+    private int _bulletsMaxCount;
+    public int BulletsMaxCount => _bulletsMaxCount;
+
     // levels are looped
     public LevelParams GetNextLevel(LevelParams levelConfig)
     {

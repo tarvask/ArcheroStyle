@@ -252,3 +252,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementTransform: {fileID: 1013486256924685724}
   _bodyTransform: {fileID: 6950535264035386271}
+  _gunTransform: {fileID: 4873135113757136459}

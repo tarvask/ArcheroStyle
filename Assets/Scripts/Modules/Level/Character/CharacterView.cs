@@ -12,6 +12,10 @@ namespace Modules.Level.Character
         private Transform _bodyTransform;
         public Transform BodyTransform => _bodyTransform;
 
+        [SerializeField]
+        private Transform _gunTransform;
+        public Transform GunTransform => _gunTransform;
+
         public void ChangePosition(Commands.AbstractMoveCommand.DirectionRotationPair direction, float speed)
         {
             Vector3 nextPosition = _movementTransform.localPosition + direction.Direction * speed;

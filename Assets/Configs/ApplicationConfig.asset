@@ -15,4 +15,8 @@ MonoBehaviour:
   _levels:
   - {fileID: 11400000, guid: d1dad73afe40a42afbd5edd19ad20a2b, type: 2}
   _levelStartCooldownInSeconds: 3
+  _obstaclesHeight: 3
   _playerConfig: {fileID: 11400000, guid: b3996fd0014c04786a0eaaa84bb74961, type: 2}
+  _bulletPrefab: {fileID: 7822570989549562780, guid: 3a3c999ab686346f9a561345ad54805a,
+    type: 3}
+  _bulletsMaxCount: 100

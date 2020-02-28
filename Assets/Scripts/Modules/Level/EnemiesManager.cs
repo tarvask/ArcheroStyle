@@ -9,7 +9,7 @@ namespace Modules.Level
     public class EnemiesManager
     {
         // interface
-        public event Action OnAimingStarted;
+        public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
 
         // dependencies
         private Character.CharacterController _player;
@@ -25,6 +25,7 @@ namespace Modules.Level
             foreach (var enemy in _enemies)
             {
                 enemy.OnAimingStarted += () => enemy.SetTarget(_player);
+                enemy.OnShotTriggered += (weapon, originTransform, targetTransform) => OnShotTriggered?.Invoke(weapon, originTransform, targetTransform);
             }
         }
 

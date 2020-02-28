@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using Modules.Level.Character;
 
 namespace Modules.Level
 {
@@ -14,7 +12,7 @@ namespace Modules.Level
             _player = playerManager.Player;
             _enemies = enemiesManager.Enemies;
 
-            playerManager.OnAimingStarted += () => FindEnemy();
+            playerManager.OnAimingStarted += FindEnemy;
             enemiesManager.SetPlayer(_player);
         }
 
