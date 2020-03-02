@@ -22,6 +22,7 @@ namespace Modules.Level
         private TargetsManager _targetsManager;
         private BulletsManager _bulletsManager;
         private GameRulesManager _gameRulesManager;
+        private RewardsManager _rewardsManager;
 
         public LevelController(LevelParams levelConfig, ApplicationConfig generalConfig)
         {
@@ -40,9 +41,12 @@ namespace Modules.Level
             _targetsManager = new TargetsManager(_playerManager, _enemiesManager);
             _bulletsManager = new BulletsManager(_playerManager, _enemiesManager, generalConfig.BulletPrefab, _levelView.ArenaTransform, generalConfig.BulletsMaxCount);
             _gameRulesManager = new GameRulesManager(_playerManager, _enemiesManager, _levelView.EscapeZone);
+            _rewardsManager = new RewardsManager(_enemiesManager);
 
             _gameRulesManager.OnVictory += Win;
             _gameRulesManager.OnDefeat += Lose;
+
+            _levelView.HUD.SetSubscriptions(_rewardsManager);
 
             _levelView.StartCoroutine(WaitAndStartLevel(generalConfig.LevelStartCooldownInSeconds));
         }

@@ -11,7 +11,7 @@ namespace Modules.Level.Character
         // interface
         public event Action OnAimingStarted;
         public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
-        public event Action OnKilled;
+        public event Action<CharacterParams> OnKilled;
 
         // dependencies
         private CharacterParams _config;
@@ -88,7 +88,7 @@ namespace Modules.Level.Character
             _state.Die();
             // show dying animation and destroy
             _view.gameObject.SetActive(false);
-            OnKilled?.Invoke();
+            OnKilled?.Invoke(_config);
         }
 
         private void ExecuteCommands(float deltaTime)

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using Modules.Level.Character;
 
 namespace Modules.Level
 {
@@ -31,7 +32,7 @@ namespace Modules.Level
             escapeZone.OnZoneLeft += OnEscapeZoneLeft;
         }
 
-        private void DecreaseEnemiesCount()
+        private void DecreaseEnemiesCount(CharacterParams enemyConfig)
         {
             _enemiesCount--;
             CheckEnemiesCondition();
@@ -46,7 +47,7 @@ namespace Modules.Level
             }
         }
 
-        private void OnPlayerKilled()
+        private void OnPlayerKilled(CharacterParams enemyConfig)
         {
             _playerKilled = true;
             CheckDefeatConditions();
@@ -54,7 +55,7 @@ namespace Modules.Level
 
         private void OnEscapeZoneEntered(Collider other)
         {
-            Character.CharacterView character = other.transform.parent.GetComponent<Character.CharacterView>();
+            CharacterView character = other.transform.parent.GetComponent<CharacterView>();
 
             if (character != null && character.tag == "Player")
             {
@@ -65,7 +66,7 @@ namespace Modules.Level
 
         private void OnEscapeZoneLeft(Collider other)
         {
-            Character.CharacterView character = other.transform.parent.GetComponent<Character.CharacterView>();
+            CharacterView character = other.transform.parent.GetComponent<CharacterView>();
 
             if (character != null && character.tag == "Player")
             {

@@ -35,6 +35,10 @@ namespace Modules.Level.UI
         [SerializeField]
         private Button _nextWeaponButton;
 
+        [Header("Indicators")]
+        [SerializeField]
+        private Text _coinsCountText;
+
         public void Init()
         {
             InitDirectionButton(_upButton, () => { IsUpButtonPressed = true; }, () => { IsUpButtonPressed = false; });
@@ -44,6 +48,11 @@ namespace Modules.Level.UI
 
             _previousWeaponButton.onClick.AddListener(() => OnChangeWeaponButtonClicked?.Invoke(-1));
             _nextWeaponButton.onClick.AddListener(() => OnChangeWeaponButtonClicked?.Invoke(1));
+        }
+
+        public void SetSubscriptions(RewardsManager rewardsManager)
+        {
+            rewardsManager.OnCoinsAdded += UpdateCoinsIndicator;
         }
 
         private void InitDirectionButton(Button directionButton, Action onDownAction, Action onUpAction)
@@ -59,6 +68,11 @@ namespace Modules.Level.UI
             buttonUpTrigger.eventID = EventTriggerType.PointerUp;
             buttonUpTrigger.callback.AddListener((e) => onUpAction());
             directionButtonTrigger.triggers.Add(buttonUpTrigger);
+        }
+
+        private void UpdateCoinsIndicator(int coinsCount)
+        {
+            _coinsCountText.text = coinsCount.ToString();
         }
     }
 }
