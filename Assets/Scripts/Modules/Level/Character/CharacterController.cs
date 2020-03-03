@@ -12,6 +12,7 @@ namespace Modules.Level.Character
         public event Action OnAimingStarted;
         public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
         public event Action<CharacterParams> OnKilled;
+        public event Action<WeaponParams> OnWeaponChanged;
 
         // dependencies
         private CharacterParams _config;
@@ -34,11 +35,13 @@ namespace Modules.Level.Character
             _shootingTarget = null;
 
             _view.OnSmashed += Hurt;
+            _state.OnWeaponChanged += (weapon) => OnWeaponChanged?.Invoke(weapon);
         }
 
         public bool IsActive => _state.Condition == CharacterCondition.Active;
         public bool IsAlive => _state.Condition != CharacterCondition.Dead;
         public Vector3 ArenaPosition => _view.MovementTransform.localPosition;
+        public WeaponParams Weapon => _state.Weapon;
 
         public void Activate()
         {

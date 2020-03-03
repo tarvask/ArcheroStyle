@@ -11,6 +11,7 @@ namespace Modules.Level
         public event Action OnAimingStarted;
         public event Action<WeaponParams, Transform, Transform> OnShotTriggered;
         public event Action<CharacterParams> OnPlayerKilled;
+        public event Action<WeaponParams> OnWeaponChanged;
 
         // own members
         private Character.CharacterController _player;
@@ -22,6 +23,7 @@ namespace Modules.Level
             _player.OnAimingStarted += () => OnAimingStarted?.Invoke();
             _player.OnShotTriggered += (weapon, originTransform, targetTransform) => OnShotTriggered?.Invoke(weapon, originTransform, targetTransform);
             _player.OnKilled += (config) => OnPlayerKilled?.Invoke(config);
+            _player.OnWeaponChanged += (weapon) => OnWeaponChanged?.Invoke(weapon);
 
             inputManager.OnMovementInput += MovePlayerCharacter;
             inputManager.OnChangeWeaponInput += ChangeCharacterWeapon;

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Modules.Level.Character;
 
 namespace Modules.Level.UI
 {
@@ -39,6 +40,9 @@ namespace Modules.Level.UI
         [SerializeField]
         private Text _coinsCountText;
 
+        [SerializeField]
+        private Text _weaponNameText;
+
         public void Init()
         {
             InitDirectionButton(_upButton, () => { IsUpButtonPressed = true; }, () => { IsUpButtonPressed = false; });
@@ -50,9 +54,16 @@ namespace Modules.Level.UI
             _nextWeaponButton.onClick.AddListener(() => OnChangeWeaponButtonClicked?.Invoke(1));
         }
 
-        public void SetSubscriptions(RewardsManager rewardsManager)
+        public void SetSubscriptions(PlayerManager playerManager, RewardsManager rewardsManager)
         {
+            playerManager.OnWeaponChanged += UpdateWeaponIndicator;
             rewardsManager.OnCoinsAdded += UpdateCoinsIndicator;
+        }
+
+        public void InitIndicators(WeaponParams weapon, int coinsStartCount)
+        {
+            _weaponNameText.text = weapon.Title;
+            _coinsCountText.text = coinsStartCount.ToString();
         }
 
         private void InitDirectionButton(Button directionButton, Action onDownAction, Action onUpAction)
@@ -73,6 +84,11 @@ namespace Modules.Level.UI
         private void UpdateCoinsIndicator(int coinsCount)
         {
             _coinsCountText.text = coinsCount.ToString();
+        }
+
+        private void UpdateWeaponIndicator(WeaponParams weapon)
+        {
+            _weaponNameText.text = weapon.Title;
         }
     }
 }

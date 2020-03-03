@@ -1,4 +1,6 @@
-﻿namespace Modules.Level.Character
+﻿using System;
+
+namespace Modules.Level.Character
 {
     public enum CharacterCondition
     {
@@ -14,6 +16,8 @@
         public float ShootingTimer { get; private set; }
         public WeaponParams Weapon { get; private set; }
         public CharacterCondition Condition { get; private set; }
+
+        public event Action<WeaponParams> OnWeaponChanged;
 
         public CharacterState(CharacterParams config)
         {
@@ -51,6 +55,7 @@
         public void ChangeWeapon(WeaponParams newWeapon)
         {
             Weapon = newWeapon;
+            OnWeaponChanged?.Invoke(Weapon);
         }
 
         public void Activate()

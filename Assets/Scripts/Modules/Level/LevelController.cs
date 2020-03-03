@@ -46,7 +46,8 @@ namespace Modules.Level
             _gameRulesManager.OnVictory += Win;
             _gameRulesManager.OnDefeat += Lose;
 
-            _levelView.HUD.SetSubscriptions(_rewardsManager);
+            _levelView.HUD.SetSubscriptions(_playerManager, _rewardsManager);
+            _levelView.HUD.InitIndicators(_playerManager.Player.Weapon, 0);
 
             _levelView.StartCoroutine(WaitAndStartLevel(generalConfig.LevelStartCooldownInSeconds));
         }
